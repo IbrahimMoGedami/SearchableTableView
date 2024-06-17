@@ -5,6 +5,9 @@ import PackageDescription
 
 let package = Package(
     name: "SearchableTableView",
+    platforms: [
+        .iOS(.v15), // Set iOS version to 15 or higher if you want to use async/await
+    ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
