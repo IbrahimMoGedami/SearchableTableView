@@ -7,13 +7,13 @@
 
 import UIKit
 
-class DropDownListViewController: UIViewController {
+public class DropDownListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView?
     @IBOutlet weak var searchBar: UISearchBar?
     
     private var viewModel: DropDownListViewModelProtocol
-    var closure: ((Searchable?) -> ())?
+    public var closure: ((Searchable?) -> ())?
     
     init(viewModel: DropDownListViewModelProtocol) {
         self.viewModel = viewModel
@@ -24,7 +24,7 @@ class DropDownListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationController?.navigationBar.isHidden = true
@@ -36,7 +36,7 @@ class DropDownListViewController: UIViewController {
         tableView?.setupTableViewDesign()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         tableView?.reloadData()
@@ -46,17 +46,17 @@ class DropDownListViewController: UIViewController {
 
 extension DropDownListViewController: UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.getDataSourceCount
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(with: DropDownTableViewCell.self, for: indexPath)
         viewModel.setCell(cell, indexPath: indexPath)
         return cell
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
         UIView.animate(withDuration: 0.6) {
             cell.transform = CGAffineTransform.identity
@@ -67,7 +67,7 @@ extension DropDownListViewController: UITableViewDataSource {
 
 extension DropDownListViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let entity: Searchable? = viewModel.didSelectCell(indexPath: indexPath)
         closure?(entity)
         dismiss(animated: true)
@@ -77,12 +77,12 @@ extension DropDownListViewController: UITableViewDelegate {
 
 extension DropDownListViewController: UISearchBarDelegate {
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel.searchBarTextDidChange(searchingText: searchText)
         tableView?.reloadData()
     }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         viewModel.searchBarCancelButtonClicked()
         searchBar.text = ""
         tableView?.reloadData()
