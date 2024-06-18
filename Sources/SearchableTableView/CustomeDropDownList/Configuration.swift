@@ -14,8 +14,9 @@ public enum DropDownListConfiguration<DataModel: Displayable & Searchable> {
     public var viewController: UIViewController {
         switch self {
         case .search(let array):
+            var completion: (((any Searchable)?) -> ())?
             let viewModel = DropDownListViewModel(dataSource: array)
-            let viewController = DropDownListViewController(viewModel: viewModel)
+            let viewController = DropDownListViewController(viewModel: viewModel, closure: completion)
             return viewController
         }
     }
