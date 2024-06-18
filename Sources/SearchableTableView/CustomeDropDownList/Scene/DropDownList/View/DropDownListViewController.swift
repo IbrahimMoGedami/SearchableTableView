@@ -17,7 +17,6 @@ public class DropDownListViewController: UIViewController {
     
     init(viewModel: DropDownListViewModelProtocol) {
         self.viewModel = viewModel
-//        super.init(nibName: "DropDownListViewController", bundle: nil)
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
     
@@ -89,4 +88,34 @@ extension DropDownListViewController: UISearchBarDelegate {
         tableView?.reloadData()
     }
     
+}
+
+extension DropDownListViewController: Initializable {
+
+    static func instantiate() -> Self {
+        instantiateFromNib()
+    }
+    
+}
+
+public class DropDownListViewControllerConfigurator: NSObject {
+    
+    static func make() -> DropDownListViewController {
+        DropDownListViewController.instantiate()
+    }
+    
+}
+
+protocol Initializable {
+    
+    static func instantiateFromNib<T: UIViewController>() -> T
+    
+}
+
+extension Initializable where Self: UIViewController {
+    
+    static func instantiateFromNib<T: UIViewController>() -> T {
+        T()
+    }
+
 }
