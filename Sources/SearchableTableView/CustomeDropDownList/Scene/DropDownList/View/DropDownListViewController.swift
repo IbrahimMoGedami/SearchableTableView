@@ -13,7 +13,7 @@ public class DropDownListViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar?
     
     private var viewModel: DropDownListViewModelProtocol
-    var closure: ((Searchable?) -> ())?
+    public var closure: ((Searchable?) -> ())?
     
     init(viewModel: DropDownListViewModelProtocol) {
         self.viewModel = viewModel
