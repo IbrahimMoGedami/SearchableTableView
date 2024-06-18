@@ -13,11 +13,11 @@ public class DropDownListViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar?
     
     private var viewModel: DropDownListViewModelProtocol
-    private var closure: ((Searchable?) -> ())?
+    var closure: ((Searchable?) -> ())?
     
-    init(viewModel: DropDownListViewModelProtocol, closure: ((Searchable?) -> ())?) {
+    init(viewModel: DropDownListViewModelProtocol) {
         self.viewModel = viewModel
-        self.closure = closure
+//        super.init(nibName: "DropDownListViewController", bundle: nil)
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
     
