@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DropDownListViewController" customModule="SearchableTableView">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DropDownListViewController">
             <connections>
                 <outlet property="searchBar" destination="W01-H4-sik" id="Wi8-9p-EB4"/>
                 <outlet property="tableView" destination="59k-9y-sKA" id="fm7-pb-fiR"/>
